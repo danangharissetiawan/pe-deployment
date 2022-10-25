@@ -1,12 +1,3 @@
-'''
-	Contoh Deloyment untuk Domain Computer Vision (CV)
-	Orbit Future Academy - AI Mastery - KM Batch 3
-	Tim Deployment
-	2022
-'''
-
-# =[Modules dan Packages]========================
-
 from flask import Flask,render_template,request,jsonify
 from werkzeug.utils import secure_filename
 import pandas as pd
@@ -18,11 +9,9 @@ from tensorflow.keras.layers import Conv2D, MaxPooling2D, \
 Flatten, Dense, Activation, Dropout,LeakyReLU
 from PIL import Image
 from tensorflow.keras.preprocessing import image
-# from fungsi import make_model
 
 
 
-# =[Variabel Global]=============================
 
 app = Flask(__name__, static_url_path='/static')
 
@@ -35,7 +24,7 @@ model = None
 NUM_CLASSES = 4
 animal_classes = ["cat", "dear", "dog", "horse"]
 
-# =[Routing]=====================================
+# [Routing
 
 # [Routing untuk Halaman Utama atau Home]
 @app.route("/")
@@ -93,8 +82,7 @@ def apiDeteksi():
 				"prediksi": hasil_prediksi,
 				"gambar_prediksi" : gambar_prediksi
 			})
-
-# =[Main]========================================		
+	
 
 if __name__ == '__main__':
 	
