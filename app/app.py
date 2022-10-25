@@ -86,7 +86,7 @@ def apiDeteksi():
 
 if __name__ == '__main__':
 	
-    model = load_model("../model/mobileNet3.h5")
+    model = load_model("../model/modelMobilenet.h5")
 
 	# Run Flask di localhost 
     app.run(host="localhost", port=5000, debug=True)
