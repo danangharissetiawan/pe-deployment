@@ -1,14 +1,9 @@
 from flask import Flask,render_template,request,jsonify
 from werkzeug.utils import secure_filename
-import pandas as pd
 import numpy as np
 import os
-import tensorflow as tf
-from tensorflow.keras.models import Sequential, load_model
-from tensorflow.keras.layers import Conv2D, MaxPooling2D, \
-Flatten, Dense, Activation, Dropout,LeakyReLU
 from PIL import Image
-from tensorflow.keras.preprocessing import image
+from keras.models import load_model
 
 
 
@@ -56,16 +51,15 @@ def apiDeteksi():
             uploaded_file.save(os.path.join(app.config['UPLOAD_PATH'], filename))
 			
 			# Memuat Gambar
-            img = image.load_img('.' + gambar_prediksi, target_size=(224, 224))
+            img = Image.open('.' + gambar_prediksi)
             
             # Konversi Gambar ke Array
-            img = image.img_to_array(img)
+            img = img.resize((224,224))
+            img = np.array(img)
             img_arr = np.expand_dims(img, axis=0)
-            img_net = tf.keras.applications.mobilenet.preprocess_input(img_arr)
-            
 			
 			# Prediksi Gambar
-            predicted = model.predict(img_net)
+            predicted = model.predict(img_arr)
             label = np.argmax(predicted, axis=1)
 			
             hasil_prediksi = animal_classes[label[0]]
