@@ -1,0 +1,7 @@
+tensorflow==2.10.0
+pandas
+numpy
+Pillow
+gunicorn
+flask
+Werkzeug==2.2.2
